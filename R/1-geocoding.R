@@ -27,9 +27,6 @@ ggplot() +
    geom_sf_text(data = robust, label = "Robust 2026", hjust = -.15) +
    theme_void() 
 
-# pro ukázání v Readme
-# ggsave("./robust-2026.png", width = 800, height = 500, units = "px")
-
 
 # jiný pohled na statickou mapu
 voda <- RCzechia::reky() %>% 
