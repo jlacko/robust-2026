@@ -26,12 +26,26 @@ ggplot(data = chrt_src) +
 # je cena kapra rozmístěna náhodně?
 library(spdep)
 
-matice <- chrt_src %>% 
+# pomocné objekty v rovinném CRS
+kraje_krovak <- chrt_src %>% 
+   st_geometry() %>% 
+   st_transform(5514)
+
+stredobody <- st_centroid(kraje_krovak)
+
+# vlastní matice
+matice <- kraje_krovak %>% 
    poly2nb() %>%  # z polygonů na sousedy
    nb2listw()     # ze sousedů na matici
 
-# součet řádků matice vah
-sapply(matice$weights, sum)
+# vizualizace matice 
+plot(kraje_krovak, border = "gray25")
+plot(matice, coords = stredobody,
+     pch = 19, col = "red", add = T)
+
+# vlastnosti matice
+sapply(matice$weights, sum) # řádkový součet = 1
+sum(sapply(matice$weights, sum)) # součet součtů = 14 (čiliže n)
 
 # Moranův test s přijetím předpokladů™
 moran.test(chrt_src$cena_kapra, matice, alternative = "two.sided")
@@ -72,6 +86,7 @@ model_src$resids <- model_kapra$residuals
 ggplot(data = model_src) +
    geom_sf(aes(fill = resids)) +
    geom_sf_label(aes(label = round(resids, 2))) +
+   scale_fill_viridis_c() +
    theme_minimal() +
    theme(axis.title = element_blank()) +
    labs(title = "Rezidua z modelu")

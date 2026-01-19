@@ -32,7 +32,7 @@ ggplot() +
 voda <- RCzechia::reky() %>% 
    subset(NAZEV %in% c("Vydra",
                        "Vchynicko-tetovský kanál",
-                       "Otava",
+#                       "Otava",
                        "Křemelná"))
           
 ggplot() +
