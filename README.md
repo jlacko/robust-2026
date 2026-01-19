@@ -9,10 +9,10 @@ Repozitář s materiály pro [Robust 2026](https://robust.nipax.cz/) v lednu 202
 
 Struktura repozitáře:
 - `JLA-robust-prezka.odp` prezentace ve formátu Open Office Impress
-- `/R/1-geocoding.R` získání dat a kreslení map / geocoding + `[{RCzechia}](https://rczechia.jla-data.net/)` package
-- `/R/2-vánoční-kapr.R`získání dat a kreslení map / staťák + `[{czso}](https://petrbouchal.xyz/czso/)` package 
+- `/R/1-geocoding.R` získání dat a kreslení map / geocoding + [`{RCzechia}`](https://rczechia.jla-data.net/) package
+- `/R/2-vánoční-kapr.R`získání dat a kreslení map / staťák + [`{czso}`](https://petrbouchal.xyz/czso/) package 
 - `/R/3-projekce.R` volba mapové projekce a její dopady
-- `/R/4-geomarketing.R` geomarketing a získání dat z Open Street Map / `[{osmdata}](https://docs.ropensci.org/osmdata/` package
+- `/R/4-geomarketing.R` geomarketing a získání dat z Open Street Map / [`{osmdata}`](https://docs.ropensci.org/osmdata/) package
 - `/R/5-dlouhověkost.R` modelování dlouhověkosti nad historickými censy
 - `/R/6-matice-vzdáleností.R` konstrukce a využití vzdálenostní matice
 - `/R/7-matice-sousedství.R` konstrukce a využití matic sousedství a vah
