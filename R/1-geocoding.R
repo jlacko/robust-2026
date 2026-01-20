@@ -9,11 +9,6 @@ robust <- tidygeocoder::geo("Hotel Vydra, Srní",
                             method = "osm") %>% 
    sf::st_as_sf(coords = c("long", "lat"), crs = 4326)
 
-
-# pro jistotu - kdyby selhal internet...
-# saveRDS(robust, "./data/robust.rds")
-# robust <- readRDS("./data/robust.rds")
-
 # obecná data - hranice ČR jako celku, low resolution pro zjednodušení
 hranice <- RCzechia::republika(resolution = "low")
 

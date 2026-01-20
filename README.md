@@ -9,6 +9,7 @@ Repozitář s materiály pro [Robust 2026](https://robust.nipax.cz/) v lednu 202
 
 Struktura repozitáře:
 - `JLA-robust-prezka.odp` prezentace ve formátu Open Office Impress
+- `JLA-robust-prezka.pdf` prezentace ve formátu Adobe Acrobat Reader
 - `/R/1-geocoding.R` získání dat a kreslení map / geocoding + [`{RCzechia}`](https://rczechia.jla-data.net/) package
 - `/R/2-vánoční-kapr.R`získání dat a kreslení map / staťák + [`{czso}`](https://petrbouchal.xyz/czso/) package 
 - `/R/3-projekce.R` volba mapové projekce a její dopady

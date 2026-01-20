@@ -18,15 +18,18 @@ skoly <- data.frame(
       "Albertov 6, Praha 2"
    )) %>%
    tidygeocoder::geocode(address = adresa,
-                         method = "here") %>%
+                         method = "osm") %>% 
    sf::st_as_sf(coords = c("long", "lat"), crs = 4326) 
-
 
 # bbox = město Praha
 search_res <- opq(bbox = "Praha") %>%
    add_osm_feature(key = "amenity", 
                    value = c("bar", "restaurant", "pub")) %>%
    osmdata_sf(quiet = F)  # ukáže průběh
+
+# pro jistotu - kdyby selhal internet...
+# saveRDS(search_res, "./data/hospody-praha.rds")
+# search_res <- readRDS("./data/hospody-praha.rds")
 
 # z výsledku vybere data frame bodů / ještě jsou polygony & lines
 hopsody <- search_res$osm_points %>%  
@@ -59,7 +62,7 @@ mapview::mapview(iso_skoly, zcol = "skola")
 
 # propojení s hospodami / sečtení výsledků
 iso_skoly %>% 
-   st_join(hopsody) %>% 
+   st_join(hopsody) %>% # prostorové propojení / point (hospoda) in polygon (okolí školy)
    st_drop_geometry() %>%  # už jí nepotřebuju...
    group_by(skola) %>% 
    tally() %>%  # sečíst řádky

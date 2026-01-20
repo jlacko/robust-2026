@@ -3,12 +3,9 @@
 # - na podílu obyvatel 65+ v roce 1930 / hypotéza "Blue Zones" https://doi.org/10.1553/populationyearbook2013s87
 # - na podílu obyvatel německé národnosti v roce 1930 / hypotéza "Postupim"
 
-
 library(RCzechia)
-library(spdep)
 library(dplyr)
 library(ggplot2)
-library(ggspatial)
 
 # census 1980
 okresy_1980 <- RCzechia::historie("okresy_1980") %>%

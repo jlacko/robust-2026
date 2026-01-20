@@ -1,4 +1,4 @@
-# připomenutí kapra...
+# pokračování problému "kapr" technikami prostorové statistiky
 
 library(tidyverse) # protože dplyr, ggplot2 a spol.
 library(RCzechia) # česká geodata

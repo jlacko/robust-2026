@@ -6,17 +6,11 @@ library(RCzechia) # česká geodata
 library(leaflet)  # pro fancy dynamické overview
 
 # podkladová data - ceny potravin (spotřební koš ČSÚ) v regionech a čase
-
-# Průměrné spotřebitelské ceny vybraných výrobků - potravinářské výrobky
 kapr <- czso::czso_get_table("012052", dest_dir = "./data") %>% 
    filter(reprcen_txt %in% c("Kapr živý [1 kg]")   # relevantní cenový reprezentant,
           & uzemi_txt != "Česká republika"         # pouze regionální hodnoty (tj. ne ČR jako celek)
           & obdobiod >= "2018-12-01" 
           & obdobido <= "2019-01-01") 
-
-# pro jistotu - kdyby selhal internet...
-# saveRDS(kapr, "./data/kapr.rds")
-# kapr <- readRDS("./data/kapr.rds")
 
 chrt_src <- RCzechia::kraje("low") %>% 
    inner_join(kapr, by = c("KOD_KRAJ" = "uzemi_kod"))
@@ -30,7 +24,7 @@ plot(chrt_src["hodnota"])
 # statický obrázek fancy
 ggplot(chrt_src) +
    geom_sf(aes(fill = hodnota)) +
-   geom_sf_text(aes(label = hodnota)) +
+   geom_sf_label(aes(label = hodnota), fill = "white") +
    scale_fill_viridis_c(labels = scales::label_number(suffix = " Kč"),) +
    theme_void() +
    labs(title = "Vánoční kapr",
@@ -41,7 +35,7 @@ ggplot(chrt_src) +
 # dynamincké overview basic
 mapview::mapview(chrt_src, zcol = "hodnota")
 
-# dynamické overview
+# dynamické overview fancy
 barvy <- colorNumeric(palette = "RdYlGn",
                       reverse = T,
                       domain = chrt_src$hodnota)
